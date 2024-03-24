@@ -2,10 +2,21 @@ body
 {
     margin: 0;
     height: 100vh;
+    background-color: #C5CAE9;
 }
 
 
 .header
 {
-    background-color: 134283;
+    display: flex;
+    background-color: #3F51B5;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+img
+{
+    height: 40px;
+    width: 40px;
 }
