@@ -35,7 +35,7 @@ const handler =
 			lowerScreen.textContent = target[prop];
 			target.fOperand = parseFloat(target[prop]);
 			target.symbol = "";
-			targetsOperand = "";
+			target.sOperand = "";
 			target[prop] = NaN;
 		}
 	},
@@ -100,5 +100,5 @@ function erase()
 	operation.symbol = "";
 	operation.result = NaN;
 	upperScreen.textContent = "";
-	lowerScreen.textContent = "";
+	lowerScreen.textContent = "0";
 }
