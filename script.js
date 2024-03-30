@@ -6,27 +6,26 @@ const operation =
 	result : NaN,
 };
 
+//The handler must handle displaying the final result or the result of the previous operation
 const handler = 
 {
 	set(target, prop, value)
 	{
 		const upperScreen = document.querySelector(".upper-screen");
-		if (prop === "fOperand")
+		if (prop === "symbol")
 		{
-			target[prop] = value;
-			upperScreen.textContent = value;
-		}
-			
-		else if (prop === "symbol")
-		{
-			target[prop] = value;
-			upperScreen.textContent += ` ${value} `;
-		}
-			
-		else if (prop === "sOperand")
-		{
-			target[prop] = value;
-			upperScreen.textContent += value[value.length - 1];
+			if (target[prop] == "")
+			{
+				target[prop] = value;
+				upperScreen.textContent += ` ${value} `;
+			}
+			else
+			{
+				target.fOperand = operate(target);
+				target[prop] = value;
+				target.sOperand = "";
+				upperScreen.textContent = `${target.fOperand} ${value} `
+			}
 		}
 	},
 };
@@ -56,12 +55,14 @@ function operate(operation)
 
 function processNum(e)
 {
-	proxyOperation.symbol === "" ? proxyOperation.fOperand += e.target.textContent : proxyOperation.sOperand += e.target.textContent;
+	const upperScreen = document.querySelector(".upper-screen");
+	operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
+	operation.symbol === "" ? upperScreen.textContent += e.target.textContent : upperScreen.textContent += e.target.textContent;
 }
 
 function proccesOperator(e)
 {
-	const keys = 
+	const butn_symbol = 
 	{
 		operand : ['+', '-','*','÷'],
 		negative : '±',
@@ -70,6 +71,8 @@ function proccesOperator(e)
 		dot : '.',
 		equal : '='
 	};
-	if (keys.operand.includes(e.target.textContent) === true)
+	if (butn_symbol.operand.includes(e.target.textContent) === true && proxyOperation.fOperand != "")
 		proxyOperation.symbol = e.target.textContent;
+	else if (butn_symbol.equal === e.target.textContent)
+		alert("You clicked the equal sign");
 }
