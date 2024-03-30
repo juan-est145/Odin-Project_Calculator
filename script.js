@@ -6,6 +6,33 @@ const operation =
 	result : NaN,
 };
 
+const handler = 
+{
+	set(target, prop, value)
+	{
+		const upperScreen = document.querySelector(".upper-screen");
+		if (prop === "fOperand")
+		{
+			target[prop] = value;
+			upperScreen.textContent = value;
+		}
+			
+		else if (prop === "symbol")
+		{
+			target[prop] = value;
+			upperScreen.textContent += ` ${value} `;
+		}
+			
+		else if (prop === "sOperand")
+		{
+			target[prop] = value;
+			upperScreen.textContent += value[value.length - 1];
+		}
+	},
+};
+
+const proxyOperation = new Proxy(operation, handler);
+
 document.querySelector(".buttons").addEventListener("click", (e)=>
 {
 	if (e.target.classList.contains("btn-num"))
@@ -29,14 +56,11 @@ function operate(operation)
 
 function processNum(e)
 {
-	const upperScreen = document.querySelector(".upper-screen");
-	const number = operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
-	operation.symbol === "" ? upperScreen.textContent = number : upperScreen.textContent += number[number.length - 1];
+	proxyOperation.symbol === "" ? proxyOperation.fOperand += e.target.textContent : proxyOperation.sOperand += e.target.textContent;
 }
 
 function proccesOperator(e)
 {
-	const upperScreen = document.querySelector(".upper-screen");
 	const keys = 
 	{
 		operand : ['+', '-','*','÷'],
@@ -47,9 +71,5 @@ function proccesOperator(e)
 		equal : '='
 	};
 	if (keys.operand.includes(e.target.textContent) === true)
-	{
-		operation.symbol = e.target.textContent;
-		upperScreen.textContent += ` ${e.target.textContent} `;
-	}
-		
+		proxyOperation.symbol = e.target.textContent;
 }
