@@ -27,6 +27,17 @@ const handler =
 				upperScreen.textContent = `${target.fOperand} ${value} `
 			}
 		}
+		else if (prop === "result")
+		{
+			const lowerScreen = document.querySelector(".lower-screen");
+			target[prop] = operate(target);
+			upperScreen.textContent = "";
+			lowerScreen.textContent = target[prop];
+			target.fOperand = parseFloat(target[prop]);
+			target.symbol = "";
+			targetsOperand = "";
+			target[prop] = NaN;
+		}
 	},
 };
 
@@ -74,5 +85,5 @@ function proccesOperator(e)
 	if (butn_symbol.operand.includes(e.target.textContent) === true && proxyOperation.fOperand != "")
 		proxyOperation.symbol = e.target.textContent;
 	else if (butn_symbol.equal === e.target.textContent)
-		alert("You clicked the equal sign");
+		proxyOperation.result = 0;
 }
