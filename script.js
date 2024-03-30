@@ -86,4 +86,19 @@ function proccesOperator(e)
 		proxyOperation.symbol = e.target.textContent;
 	else if (butn_symbol.equal === e.target.textContent)
 		proxyOperation.result = 0;
+	else if (butn_symbol.clear === e.target.textContent)
+		erase();
+
+}
+
+function erase()
+{
+	const upperScreen = document.querySelector(".upper-screen");
+	const lowerScreen = document.querySelector(".lower-screen");
+	operation.fOperand = "";
+	operation.sOperand = "";
+	operation.symbol = "";
+	operation.result = NaN;
+	upperScreen.textContent = "";
+	lowerScreen.textContent = "";
 }
