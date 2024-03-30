@@ -37,7 +37,6 @@ const handler =
 			target.fOperand = parseFloat(target[prop]);
 			target.symbol = "";
 			target.sOperand = "";
-			target[prop] = NaN;
 		}
 	},
 };
@@ -67,6 +66,12 @@ function operate(operation)
 
 function processNum(e)
 {
+	if (isNaN(operation.result) === false && operation.fOperand !== "" && lowerScreen.textContent !== '0' && operation.symbol === "")
+	{
+		operation.fOperand = "";
+		operation.result = NaN;
+		lowerScreen.textContent = '0';
+	}
 	operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
 	operation.symbol === "" ? upperScreen.textContent += e.target.textContent : upperScreen.textContent += e.target.textContent;
 }
