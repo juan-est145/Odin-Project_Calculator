@@ -31,7 +31,18 @@ const handler =
 		}
 		else if (prop === "result")
 		{
+			if (target.fOperand === "" || target.symbol === "" || target.sOperand === "")
+			{
+				alert("Syntax Error");
+				return ;
+			}
 			target[prop] = operate(target);
+			if (Number.isFinite(target[prop]) === false)
+			{
+				alert("Syntax Error");
+				erase();
+				return ;
+			}
 			upperScreen.textContent = "";
 			lowerScreen.textContent = target[prop];
 			target.fOperand = parseFloat(target[prop]);
