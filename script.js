@@ -29,7 +29,7 @@ function operate(operation)
 
 function processNum(e)
 {
-	const screen = document.querySelector(".screen");
+	const screen = document.querySelector(".upper-screen");
 	const value = operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
 	screen.textContent = value;
 }
