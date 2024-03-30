@@ -106,6 +106,8 @@ function proccesOperator(e)
 		erase();
 	else if (butn_symbol.dot === e.target.textContent)
 		decimalPoint();
+	else if (butn_symbol.negative === e.target.textContent)
+		minusOperator(); 
 }
 
 function erase()
@@ -127,4 +129,14 @@ function decimalPoint()
 	else
 		return ;
 	upperScreen.textContent += '.';
+}
+
+function minusOperator()
+{
+	if (operation.symbol === '' && Number.isFinite(parseFloat(operation.fOperand)) === true && operation.fOperand !== '0')
+	{
+		operation.fOperand = (parseFloat(operation.fOperand) * -1).toString();
+		upperScreen.textContent = operation.fOperand;
+	}
+	//Try to find the last space index and everthing after there deleted and replace it with second operand to minus
 }
