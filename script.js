@@ -6,12 +6,14 @@ const operation =
 	result : NaN,
 };
 
+const upperScreen = document.querySelector(".upper-screen");
+const lowerScreen = document.querySelector(".lower-screen");
+
 //The handler must handle displaying the final result or the result of the previous operation
 const handler = 
 {
 	set(target, prop, value)
 	{
-		const upperScreen = document.querySelector(".upper-screen");
 		if (prop === "symbol")
 		{
 			if (target[prop] == "")
@@ -29,7 +31,6 @@ const handler =
 		}
 		else if (prop === "result")
 		{
-			const lowerScreen = document.querySelector(".lower-screen");
 			target[prop] = operate(target);
 			upperScreen.textContent = "";
 			lowerScreen.textContent = target[prop];
@@ -66,7 +67,6 @@ function operate(operation)
 
 function processNum(e)
 {
-	const upperScreen = document.querySelector(".upper-screen");
 	operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
 	operation.symbol === "" ? upperScreen.textContent += e.target.textContent : upperScreen.textContent += e.target.textContent;
 }
@@ -88,17 +88,27 @@ function proccesOperator(e)
 		proxyOperation.result = 0;
 	else if (butn_symbol.clear === e.target.textContent)
 		erase();
-
+	else if (butn_symbol.dot === e.target.textContent)
+		decimalPoint();
 }
 
 function erase()
 {
-	const upperScreen = document.querySelector(".upper-screen");
-	const lowerScreen = document.querySelector(".lower-screen");
 	operation.fOperand = "";
 	operation.sOperand = "";
 	operation.symbol = "";
 	operation.result = NaN;
 	upperScreen.textContent = "";
 	lowerScreen.textContent = "0";
+}
+
+function decimalPoint()
+{
+	if (operation.fOperand !== "" && operation.sOperand === "" && operation.fOperand.includes('.') === false)
+		operation.fOperand += '.';
+	else if (operation.sOperand !== "" && operation.fOperand !== "" && operation.sOperand.includes('.') === false)
+		operation.sOperand += '.';
+	else
+		return ;
+	upperScreen.textContent += '.';
 }
