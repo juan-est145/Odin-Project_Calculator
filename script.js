@@ -11,7 +11,7 @@ document.querySelector(".buttons").addEventListener("click", (e)=>
 	if (e.target.classList.contains("btn-num"))
 		processNum(e);
 	else if (e.target.classList.contains("btn-symbol"))
-		alert("You clicked a operand");
+		proccesOperator(e);
 });
 
 
@@ -29,12 +29,27 @@ function operate(operation)
 
 function processNum(e)
 {
-	const screen = document.querySelector(".upper-screen");
-	const value = operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
-	screen.textContent = value;
+	const upperScreen = document.querySelector(".upper-screen");
+	const number = operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
+	operation.symbol === "" ? upperScreen.textContent = number : upperScreen.textContent += number[number.length - 1];
 }
 
 function proccesOperator(e)
 {
-	const screen = document.querySelector(".screen");
+	const upperScreen = document.querySelector(".upper-screen");
+	const keys = 
+	{
+		operand : ['+', '-','*','÷'],
+		negative : '±',
+		clear : "AC",
+		erase : "Del",
+		dot : '.',
+		equal : '='
+	};
+	if (keys.operand.includes(e.target.textContent) === true)
+	{
+		operation.symbol = e.target.textContent;
+		upperScreen.textContent += ` ${e.target.textContent} `;
+	}
+		
 }
