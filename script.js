@@ -66,13 +66,13 @@ document.querySelector(".buttons").addEventListener("click", (e)=>
 function operate(operation)
 {
 	if (operation.symbol === '+')
-		return (+operation.fOperand + +operation.sOperand);
+		return parseFloat((+operation.fOperand + +operation.sOperand).toFixed(2));
 	else if (operation.symbol === '-')
-		return (+operation.fOperand - +operation.sOperand);
+		return parseFloat((+operation.fOperand - +operation.sOperand).toFixed(2));
 	else if (operation.symbol === '*')
-		return (+operation.fOperand * +operation.sOperand);
+		return parseFloat((+operation.fOperand * +operation.sOperand).toFixed(2));
 	else if (operation.symbol === '÷')
-		return (+operation.fOperand / +operation.sOperand);
+		return parseFloat((+operation.fOperand / +operation.sOperand).toFixed(2));
 }
 
 function processNum(e)
