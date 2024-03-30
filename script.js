@@ -17,7 +17,7 @@ const handler =
 			if (target[prop] == "")
 			{
 				target[prop] = value;
-				upperScreen.textContent += ` ${value} `;
+				target.fOperand === ""? upperScreen.textContent += ` ${value} ` : upperScreen.textContent = `${target.fOperand} ${value} `;
 			}
 			else
 			{
@@ -60,7 +60,7 @@ function operate(operation)
 		return (+operation.fOperand - +operation.sOperand);
 	else if (operation.symbol === '*')
 		return (+operation.fOperand * +operation.sOperand);
-	else if (operation.symbol === '/')
+	else if (operation.symbol === '÷')
 		return (+operation.fOperand / +operation.sOperand);
 }
 
