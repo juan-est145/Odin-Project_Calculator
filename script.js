@@ -33,3 +33,8 @@ function processNum(e)
 	const value = operation.symbol === "" ? operation.fOperand += e.target.textContent : operation.sOperand += e.target.textContent;
 	screen.textContent = value;
 }
+
+function proccesOperator(e)
+{
+	const screen = document.querySelector(".screen");
+}
