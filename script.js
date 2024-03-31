@@ -16,6 +16,12 @@ const handler =
 	{
 		if (prop === "symbol")
 		{
+			if (upperScreen.textContent.length === 21)
+			{
+				alert("Max amount of numbers exceeded");
+				erase();
+				return;
+			}
 			if (target[prop] == "")
 			{
 				target[prop] = value;
@@ -42,6 +48,12 @@ const handler =
 				alert("Syntax Error");
 				erase();
 				return ;
+			}
+			if (target[prop].toString().length > 12)
+			{
+				alert("Max amount of numbers exceeded");
+				erase();
+				return;
 			}
 			upperScreen.textContent = "";
 			lowerScreen.textContent = target[prop];
@@ -77,6 +89,12 @@ function operate(operation)
 
 function processNum(e)
 {
+	if (upperScreen.textContent.length === 21)
+	{
+		alert("Max amount of numbers exceeded");
+		erase();
+		return;
+	}
 	if (isNaN(operation.result) === false && operation.fOperand !== "" && lowerScreen.textContent !== '0' && operation.symbol === "")
 	{
 		operation.fOperand = "";
@@ -124,6 +142,12 @@ function erase()
 
 function decimalPoint()
 {
+	if (upperScreen.textContent.length === 21)
+	{
+		alert("Max amount of numbers exceeded");
+		erase();
+		return;
+	}
 	if (operation.fOperand !== "" && operation.sOperand === "" && operation.fOperand.includes('.') === false)
 		operation.fOperand += '.';
 	else if (operation.sOperand !== "" && operation.fOperand !== "" && operation.sOperand.includes('.') === false)
@@ -145,6 +169,12 @@ function minusOperator()
 		operation.sOperand = (parseFloat(operation.sOperand) * -1).toString();
 		let sOperandsIndex = upperScreen.textContent.lastIndexOf(" ") + 1;
 		upperScreen.textContent = upperScreen.textContent.substring(0, sOperandsIndex) + operation.sOperand;
+	}
+	if (upperScreen.textContent.length === 21)
+	{
+		alert("Max amount of numbers exceeded");
+		erase();
+		return;
 	}
 }
 
