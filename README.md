@@ -1,0 +1,1 @@
+This calculator supports basic operations (addition, substraction, multiplication and division), plus you can delete each digit at a time if you made a mistake. It also supports decimal operations, but it will always round the result up to two decimals maximum.
