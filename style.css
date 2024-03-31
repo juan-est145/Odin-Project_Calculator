@@ -1,12 +1,6 @@
-@font-face 
-{
-    font-family: "Dejavu Sans, Arial, Verdana, sans-serif";
-    src: url("fonts\web fonts\dejavusans_regular_macroman\DejaVuSans-webfont.woff");
-}
-
 html
 {
-    font-family: "Dejavu Sans";
+   font-family: monospace;
 }
 
 body
