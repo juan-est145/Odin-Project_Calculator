@@ -107,7 +107,9 @@ function proccesOperator(e)
 	else if (butn_symbol.dot === e.target.textContent)
 		decimalPoint();
 	else if (butn_symbol.negative === e.target.textContent)
-		minusOperator(); 
+		minusOperator();
+	else if (butn_symbol.erase === e.target.textContent)
+		deleteOperator();
 }
 
 function erase()
@@ -143,5 +145,25 @@ function minusOperator()
 		operation.sOperand = (parseFloat(operation.sOperand) * -1).toString();
 		let sOperandsIndex = upperScreen.textContent.lastIndexOf(" ") + 1;
 		upperScreen.textContent = upperScreen.textContent.substring(0, sOperandsIndex) + operation.sOperand;
+	}
+}
+
+function deleteOperator()
+{
+	let lastIndex = upperScreen.textContent.length - 1;
+	if (upperScreen.textContent[lastIndex] === ' ')
+	{
+		upperScreen.textContent = upperScreen.textContent.substring(0, lastIndex - 2);
+		operation.symbol = "";
+	}
+	else if (operation.symbol === '' && operation.fOperand !== "")
+	{
+		upperScreen.textContent = upperScreen.textContent.substring(0, lastIndex);
+		operation.fOperand = operation.fOperand.substring(0, lastIndex);
+	}
+	else if (operation.symbol !== '' && upperScreen.textContent[lastIndex] !== ' ')
+	{
+		upperScreen.textContent = upperScreen.textContent.substring(0, lastIndex);
+		operation.sOperand = operation.sOperand.substring(0, operation.sOperand.length - 1);
 	}
 }
