@@ -138,5 +138,10 @@ function minusOperator()
 		operation.fOperand = (parseFloat(operation.fOperand) * -1).toString();
 		upperScreen.textContent = operation.fOperand;
 	}
-	//Try to find the last space index and everthing after there deleted and replace it with second operand to minus
+	else if (operation.symbol !== '' && Number.isFinite(parseFloat(operation.sOperand)) === true && operation.sOperand !== '0')
+	{
+		operation.sOperand = (parseFloat(operation.sOperand) * -1).toString();
+		let sOperandsIndex = upperScreen.textContent.lastIndexOf(" ") + 1;
+		upperScreen.textContent = upperScreen.textContent.substring(0, sOperandsIndex) + operation.sOperand;
+	}
 }
